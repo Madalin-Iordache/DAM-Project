@@ -1,9 +1,0 @@
-
-
-Bussiness rules:
-
-1) Un client poate avea mai multe contracte
-2) Fiecarui contract i se asociaza o licenta
-3) Un contract se asociaza la un singur client
-4) Fiecare licenta are o garantie
-5) Fiecare client poate crea unu sau mai multe tickete
