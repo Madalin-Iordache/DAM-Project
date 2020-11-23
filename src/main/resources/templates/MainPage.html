@@ -6,8 +6,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>Client Panel</title>
+	  <link rel="stylesheet" href="../static/css/all.css" th:href="@{/css/all.css}">
+	<title>Client Panel</title>
   </head>
 
   <body class="h-100 d-flex align-items-center">
@@ -48,10 +48,12 @@
 				</div>
 			</div>
 			<div class="container" align = "center">
-			
+
 			<table class="table">
 				<thead>
 					<tr>
+						<th scope="col"></th>
+						<th scope="col"></th>
 						<th scope="col">Client First Name</th>
 						<th scope="col">Client Last Name</th>
 						<th scope="col">Client Email</th>
@@ -60,6 +62,17 @@
 				</thead>
 				<tbody>
 				<tr scope="row" th:each="client: ${listOfClients}">
+					
+					<td>
+						<button type="submit" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="View contracts">
+							<i class="fas fa-file-contract"></i>
+						</button>
+					</td>
+					<td>
+						<button type="submit" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Edit">
+							<i class="fas fa-edit"></i>
+						</button>
+					</td>
 					<td th:text="${client.firstName}"></td>
 					<td th:text="${client.lastName}"></td>
 					<td th:text="${client.email}"></td>
