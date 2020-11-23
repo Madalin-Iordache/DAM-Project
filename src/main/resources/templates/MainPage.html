@@ -1,0 +1,74 @@
+<html class="h-100" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Client Panel</title>
+  </head>
+
+  <body class="h-100 d-flex align-items-center">
+  		<div class="container h-75">
+			<div class="row w-100 addClientRow ml-1">
+				<div class="col-md-2 h-auto titleAddClientRow">
+					<h3>Client panel</h3>
+				</div>
+				<div class="col-md-10 h-auto text-right addNewClientRow">
+					<a class="btn btn-primary" th:href="@{/showClientForm}" type="button" role="button">Add new client</a>
+					<button id="resetFilters" type="button" class="btn btn-primary">Reset filters</button>
+				</div>
+			</div>
+			<div class="row w-100 mt-5 filterRow ml-1">
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="filterClients">Filter clients</label>
+						<input type="text" class="form-control" id="filterClients" placeholder="Filter by id, name">
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="filterContracts">Filter contracts</label>
+						<input type="text" class="form-control" id="filterContracts" placeholder="Contract id">
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="filterLicenses">Filter licenses</label>
+						<input type="text" class="form-control" id="filterLicenses" placeholder="License id">
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="filterWarranty">Filter warranty</label>
+						<input type="text" class="form-control" id="filterWarranty" placeholder="Warranty id">
+					</div>
+				</div>
+			</div>
+			<div class="container" align = "center">
+			
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Client First Name</th>
+						<th scope="col">Client Last Name</th>
+						<th scope="col">Client Email</th>
+						<th scope="col">Client Age</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr scope="row" th:each="client: ${listOfClients}">
+					<td th:text="${client.firstName}"></td>
+					<td th:text="${client.lastName}"></td>
+					<td th:text="${client.email}"></td>
+					<td th:text="${client.age}"></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+  		</div>
+  </body>
+
+ </html>

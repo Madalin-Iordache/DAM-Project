@@ -1,4 +1,4 @@
-package com.feaa.project.client;
+package com.feaa.project.main.model;
 
 import javax.persistence.Embeddable;
 
