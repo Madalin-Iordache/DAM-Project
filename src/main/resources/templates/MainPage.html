@@ -1,3 +1,4 @@
+<!doctype html>
 <html class="h-100" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
   <head>
     <!-- Required meta tags -->
@@ -47,7 +48,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="container" align = "center">
+			<div class="container" align = "center" style="width: 1200px;overflow: scroll;">
 
 			<table class="table">
 				<thead>
@@ -57,6 +58,7 @@
 						<th scope="col">Client First Name</th>
 						<th scope="col">Client Last Name</th>
 						<th scope="col">Client Email</th>
+						<th scope="col">Client Age</th>
 						<th scope="col">Client Age</th>
 					</tr>
 				</thead>
@@ -76,6 +78,8 @@
 					<td th:text="${client.firstName}"></td>
 					<td th:text="${client.lastName}"></td>
 					<td th:text="${client.email}"></td>
+					<td th:text="${client.age}"></td>
+					<td th:text="${client.age}"></td>
 					<td th:text="${client.age}"></td>
 				</tr>
 				</tbody>
