@@ -29,24 +29,6 @@
 						<input type="text" class="form-control" id="filterClients" placeholder="Filter by id, name">
 					</div>
 				</div>
-				<div class="col-md-2">
-					<div class="form-group">
-						<label for="filterContracts">Filter contracts</label>
-						<input type="text" class="form-control" id="filterContracts" placeholder="Contract id">
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="form-group">
-						<label for="filterLicenses">Filter licenses</label>
-						<input type="text" class="form-control" id="filterLicenses" placeholder="License id">
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="form-group">
-						<label for="filterWarranty">Filter warranty</label>
-						<input type="text" class="form-control" id="filterWarranty" placeholder="Warranty id">
-					</div>
-				</div>
 			</div>
 			<div class="container" align = "center" style="width: 1200px;overflow: scroll;">
 
@@ -55,10 +37,10 @@
 					<tr>
 						<th scope="col"></th>
 						<th scope="col"></th>
+						<th scope="col"></th>
 						<th scope="col">Client First Name</th>
 						<th scope="col">Client Last Name</th>
 						<th scope="col">Client Email</th>
-						<th scope="col">Client Age</th>
 						<th scope="col">Client Age</th>
 					</tr>
 				</thead>
@@ -75,11 +57,14 @@
 							<i class="fas fa-edit"></i>
 						</button>
 					</td>
+					<td>
+						<button type="submit" class="btn" data-toggle="tooltip" data-placement="top" title="Delete">
+							<i class="fas fa-trash-alt"></i>
+						</button>
+					</td>
 					<td th:text="${client.firstName}"></td>
 					<td th:text="${client.lastName}"></td>
 					<td th:text="${client.email}"></td>
-					<td th:text="${client.age}"></td>
-					<td th:text="${client.age}"></td>
 					<td th:text="${client.age}"></td>
 				</tr>
 				</tbody>

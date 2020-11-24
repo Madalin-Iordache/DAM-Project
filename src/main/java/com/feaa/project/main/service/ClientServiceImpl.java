@@ -22,4 +22,9 @@ public class ClientServiceImpl implements ClientService {
     public void addClientToDB(Client client) {
         clientRepository.save(client);
     }
+
+    @Override
+    public void updateClient(Client client) {
+
+    }
 }

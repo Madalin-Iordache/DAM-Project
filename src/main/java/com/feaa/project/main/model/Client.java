@@ -1,27 +1,33 @@
 package com.feaa.project.main.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name="CLIENT")
-public class Client {
+public class Client implements Serializable {
 
     @Id
-    @Column(name="ID")
+    @Column(name="ID_CLIENT", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idClient;
 
-    @Column(name="FIRST_NAME")
+    @Column(name="FIRST_NAME", nullable = false)
     private String firstName;
 
     @Column(name="LAST_NAME")
     private String lastName;
 
-    @Column(name="AGE")
+    @Column(name="AGE", nullable = false)
     private int age;
 
-    @Column(name="EMAIL")
+    @Column(name="EMAIL", nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<Contract> contracts;
 
  /*   @Embedded
     private Address address; */

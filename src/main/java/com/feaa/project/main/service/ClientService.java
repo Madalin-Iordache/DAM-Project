@@ -9,4 +9,6 @@ public interface ClientService {
     List<Client> getAllClients();
 
     void addClientToDB(Client client);
+
+    void updateClient(Client client);
 }
