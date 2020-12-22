@@ -10,5 +10,9 @@ public interface ClientService {
 
     void addClientToDB(Client client);
 
-    void updateClient(Client client);
+    void deleteClientFromDB(Integer id);
+
+    Client getClientById(Integer id);
+
+    Client updateClient(Client client);
 }

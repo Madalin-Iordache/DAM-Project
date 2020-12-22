@@ -37,7 +37,6 @@
 					<tr>
 						<th scope="col"></th>
 						<th scope="col"></th>
-						<th scope="col"></th>
 						<th scope="col">Client First Name</th>
 						<th scope="col">Client Last Name</th>
 						<th scope="col">Client Email</th>
@@ -46,21 +45,20 @@
 				</thead>
 				<tbody>
 				<tr scope="row" th:each="client: ${listOfClients}">
-					
+
 					<td>
-						<button type="submit" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="View contracts">
-							<i class="fas fa-file-contract"></i>
-						</button>
+						<form th:action="@{/editClient/{id}(id=${client.idClient})}" method="post" th:object="${client}">
+							<button  type="submit" class="btn" data-toggle="tooltip" data-placement="top" title="Edit">
+								<i class="fas fa-edit"></i>
+							</button>
+						</form>
 					</td>
 					<td>
-						<button type="submit" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Edit">
-							<i class="fas fa-edit"></i>
-						</button>
-					</td>
-					<td>
-						<button type="submit" class="btn" data-toggle="tooltip" data-placement="top" title="Delete">
-							<i class="fas fa-trash-alt"></i>
-						</button>
+						<form th:action="@{/deleteClient/{id}(id=${client.idClient})}" method="post" th:object="${client}">
+							<button  type="submit" class="btn" data-toggle="tooltip" data-placement="top" title="Delete">
+								<i class="fas fa-trash-alt"></i>
+							</button>
+						</form>
 					</td>
 					<td th:text="${client.firstName}"></td>
 					<td th:text="${client.lastName}"></td>

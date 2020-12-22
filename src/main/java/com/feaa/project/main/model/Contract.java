@@ -22,11 +22,23 @@ public class Contract implements Serializable {
     @Column(name="CONTRACT_VALUE", nullable = false)
     private Integer contractValue;
 
+    @Column(name="CONTRACT_CURRENCY", nullable = false)
+    private String contractCurrency;
+
     public Contract() {}
 
-    public Contract(Date signedDate, Integer contractValue) {
+    public Contract(Date signedDate, Integer contractValue, String contractCurrency) {
         this.signedDate = signedDate;
         this.contractValue = contractValue;
+        this.contractCurrency = contractCurrency;
+    }
+
+    public String getContractCurrency() {
+        return contractCurrency;
+    }
+
+    public void setContractCurrency(String contractCurrency) {
+        this.contractCurrency = contractCurrency;
     }
 
     public Integer getIdContract() {

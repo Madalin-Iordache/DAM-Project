@@ -1,0 +1,98 @@
+<!doctype html>
+<html class="h-100" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Hello, world!</title>
+  </head>
+
+  <body class="h-100 align-items-center">
+  	
+	<div class="container pt-5">
+
+  	</div>
+
+    <div class="container">
+        <h4>Client info</h4>
+    </div>
+    <div class="container mt-5">
+        <form th:action="@{/updateClient/{id}(id=${client.idClient})}" th:object="${client}" class="well form-horizontal" method="POST">
+            <table class="table">
+                <thead>
+                    <tr scope="row">
+                        <th th:each="column: ${listOfColumns}" th:text="${column}"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text" class="form-control" required="true" th:field="*{firstName}" th:value="${client.firstName}"></td>
+                    <td><input type="text" class="form-control" required="true" th:field="*{lastName}" th:value="${client.lastName}"></td>
+                    <td><input type="text" class="form-control" required="true" th:field="*{age}" th:value="${client.age}"></td>
+                    <td><input type="text" class="form-control" required="true" th:field="*{email}" th:value="${client.email}"></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+
+    <div class="container mt-5">
+        <h4>Client contracts</h4>
+        <button type="submit" class="btn btn-secondary">Create contract</button>
+    </div>
+
+    <div class="container mt-5">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Client First Name</th>
+                <th scope="col">Client Last Name</th>
+                <th scope="col">Client Email</th>
+                <th scope="col">Client Age</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr scope="row" th:each="client: ${listOfClients}">
+
+                <td>
+                    <form th:action="@{/editClient/{id}(id=${client.idClient})}" method="post" th:object="${client}">
+                        <button  type="submit" class="btn" data-toggle="tooltip" data-placement="top" title="Edit">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/deleteClient/{id}(id=${client.idClient})}" method="post" th:object="${client}">
+                        <button  type="submit" class="btn" data-toggle="tooltip" data-placement="top" title="Delete">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </td>
+                <td th:text="${client.firstName}"></td>
+                <td th:text="${client.lastName}"></td>
+                <td th:text="${client.email}"></td>
+                <td th:text="${client.age}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+   
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+  </body>
+</html>
+

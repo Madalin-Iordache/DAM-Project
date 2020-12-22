@@ -20,7 +20,7 @@ public class Client implements Serializable {
     private String lastName;
 
     @Column(name="AGE", nullable = false)
-    private int age;
+    private Integer age;
 
     @Column(name="EMAIL", nullable = false)
     private String email;
@@ -65,11 +65,11 @@ public class Client implements Serializable {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

@@ -15,6 +15,15 @@
 	<div class="container pt-5">
 
   	</div>
+    <div class="container">
+        <div class="row w-50">
+            <div class="col-md-12">
+                <form th:action="@{/goToMainPage}"  method="post">
+                    <button  type="submit" class="btn btn-secondary">Back to panel</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <div class="container mt-5">
        <table class="table table-striped">
@@ -28,7 +37,6 @@
 						   </div>
                            <div class="col-md-7 text-right">
                                <button type="submit" class="btn btn-primary">Add new client</button>
-							   <button type="submit" class="btn btn-secondary">Back to panel</button>
                            </div>
                        </div>
 					   <div class="row"></div>
@@ -61,7 +69,7 @@
                               <label class="col-md-4 control-label">Age</label>
                               <div class="col-md-8 inputGroupContainer">
                                   <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                      <input th:field="*{age}" id="age" name="age" placeholder="Email" class="form-control" required="true" value="" type="text">
+                                      <input th:field="*{age}" id="age" name="age" placeholder="Age" class="form-control" required="true" value="" type="text">
                                   </div>
                               </div>
                           </div>
