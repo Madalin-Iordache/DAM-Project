@@ -1,16 +1,14 @@
 package com.feaa.project.main.service;
 
-import com.feaa.project.main.model.Client;
 import com.feaa.project.main.model.Contract;
+
+import java.util.List;
 
 public interface ContractService {
 
-    void createContract(Contract contract);
+    List<Contract> findAllContractsByClientId(Integer id);
 
-    void assignClientToContract(String idClient);
+    Contract createContract(Contract contract);
 
-    void terminateContract(Contract contract);
-
-    void updateContract(Contract contract);
-
+    Contract findContractById(Integer id);
 }

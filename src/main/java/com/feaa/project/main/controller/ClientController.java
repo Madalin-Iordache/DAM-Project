@@ -1,7 +1,9 @@
 package com.feaa.project.main.controller;
 
 import com.feaa.project.main.model.Client;
+import com.feaa.project.main.model.Contract;
 import com.feaa.project.main.service.ClientServiceImpl;
+import com.feaa.project.main.service.ContractServiceImpl;
 import com.feaa.project.main.service.MetadataServiceImpl;
 import com.feaa.project.main.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.beans.IntrospectionException;
 import java.util.List;
 
 @Controller
@@ -23,6 +24,9 @@ public class ClientController {
 
     @Autowired
     private MetadataServiceImpl metadataService;
+
+    @Autowired
+    private ContractServiceImpl contractService;
 
     @GetMapping("/")
     public String home(Model model){
@@ -65,11 +69,20 @@ public class ClientController {
     }
 
     @PostMapping("/editClient/{id}")
-    public String editClient(@PathVariable Integer id,  Model model) throws IntrospectionException {
-        List<String> listOfColumns  = metadataService.getTableColumns(Constants.CLIENT);
+    public String editClient(@PathVariable Integer id,  Model model) {
+
+        List<String> listOfClientTableColumn  = metadataService.getTableColumns(Constants.CLIENT);
+        List<String> listOfContractTableColumn = metadataService.getTableColumns(Constants.CONTRACT);
+        List<Contract> listOfContractsForClient = contractService.findAllContractsByClientId(id);
+
+        System.out.println(listOfContractTableColumn);
         Client client = clientService.getClientById(id);
-        model.addAttribute("listOfColumns", listOfColumns);
+
+        model.addAttribute("listOfClientTableColumn", listOfClientTableColumn);
+        model.addAttribute("listOfContractTableColumn", listOfContractTableColumn);
         model.addAttribute("client", client);
+        model.addAttribute("contract", new Contract());
+        model.addAttribute("listOfContracts", listOfContractsForClient);
 
 
         return "EditClient";

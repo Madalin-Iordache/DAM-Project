@@ -7,7 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Hello, world!</title>
+      <link rel="stylesheet" href="../static/css/all.css" th:href="@{/css/all.css}">
+      <title>Edit client</title>
   </head>
 
   <body class="h-100 align-items-center">
@@ -24,7 +25,7 @@
             <table class="table">
                 <thead>
                     <tr scope="row">
-                        <th th:each="column: ${listOfColumns}" th:text="${column}"></th>
+                        <th th:each="column: ${listOfClientTableColumn}" th:text="${column}"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,7 +45,42 @@
 
     <div class="container mt-5">
         <h4>Client contracts</h4>
-        <button type="submit" class="btn btn-secondary">Create contract</button>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-lg">Add contract</button>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="container w-75">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Contract</h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <form th:action="@{/addContract/{id}(id=${client.idClient})}" th:object="${contract}" method="post">
+                            <div class="form-group">
+                                <label for="contractNameId">Contract name</label>
+                                <input th:field="*{contractName}" value="" type="text" class="form-control" id="contractNameId" placeholder="Contract name">
+                            </div>
+                            <div class="form-group">
+                                <label for="valueContractId">Contract value</label>
+                                <input th:field="*{contractValue}" value= "" type="number" class="form-control" id="valueContractId" placeholder="Contract value">
+                            </div>
+                            <div class="form-group">
+                                <label for="currency">Currency</label>
+                                <select th:field="*{contractCurrency}" value="" class="form-control selectpicker" id="currency">
+                                    <option value="">Nothing selected</option>
+                                    <option value="USD">USD</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <div class="container mt-5">
@@ -52,17 +88,13 @@
             <thead>
             <tr>
                 <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col">Client First Name</th>
-                <th scope="col">Client Last Name</th>
-                <th scope="col">Client Email</th>
-                <th scope="col">Client Age</th>
+                <th th:each="column: ${listOfContractTableColumn}" th:text="${column}"></th>
             </tr>
             </thead>
             <tbody>
-            <tr scope="row" th:each="client: ${listOfClients}">
+            <tr scope="row" th:each="contract: ${listOfContracts}">
 
-                <td>
+               <!-- <td>
                     <form th:action="@{/editClient/{id}(id=${client.idClient})}" method="post" th:object="${client}">
                         <button  type="submit" class="btn" data-toggle="tooltip" data-placement="top" title="Edit">
                             <i class="fas fa-edit"></i>
@@ -75,11 +107,18 @@
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </form>
+                </td>-->
+                <td>
+                    <form th:action="@{/showLicence/{id}(id=${contract.idContract})}" method="post" th:object="${contract}">
+                        <button  type="submit" class="btn" data-toggle="tooltip" data-placement="top" title="Show">
+                            <i class="fas fa-book"></i>
+                        </button>
+                    </form>
                 </td>
-                <td th:text="${client.firstName}"></td>
-                <td th:text="${client.lastName}"></td>
-                <td th:text="${client.email}"></td>
-                <td th:text="${client.age}"></td>
+                <td th:text="${contract.signedDate}"></td>
+                <td th:text="${contract.contractValue}"></td>
+                <td th:text="${contract.contractCurrency}"></td>
+                <td th:text="${contract.contractName}"></td>
             </tr>
             </tbody>
         </table>

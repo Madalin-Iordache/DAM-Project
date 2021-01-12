@@ -1,12 +1,11 @@
 package com.feaa.project.main.model;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity
+@Table(name="LICENCE")
 public class Licence implements Serializable {
 
     @Id
@@ -15,9 +14,8 @@ public class Licence implements Serializable {
     private Integer idLicence;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_CLIENT", insertable = false, updatable = false, nullable = false)
-    @NotFound(action = NotFoundAction.IGNORE)
-    private Client client;
+    @JoinColumn(name = "ID_CONTRACT", nullable = false)
+    private Contract contract;
 
     @Column(name="SERIAL", nullable = false)
     private String serialNumber;
@@ -31,8 +29,24 @@ public class Licence implements Serializable {
     @Column(name="STATUS", nullable = false)
     private String status;
 
-    @Column(name="TYPE", nullable = false)
-    private String type;
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
+
+    public Licence() {}
+
+    public Licence(Integer idLicence, Contract contract, String serialNumber, Date startDate, Date endDate, String status) {
+        this.idLicence = idLicence;
+        this.contract = contract;
+        this.serialNumber = serialNumber;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+    }
 
     public Integer getIdLicence() {
         return idLicence;
@@ -40,14 +54,6 @@ public class Licence implements Serializable {
 
     public void setIdLicence(Integer idLicence) {
         this.idLicence = idLicence;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 
     public String getSerialNumber() {
@@ -82,24 +88,15 @@ public class Licence implements Serializable {
         this.status = status;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     @Override
     public String toString() {
         return "Licence{" +
                 "idLicence=" + idLicence +
-                ", client=" + client +
+                ", contract=" + contract +
                 ", serialNumber='" + serialNumber + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", status='" + status + '\'' +
-                ", type='" + type + '\'' +
                 '}';
     }
 }

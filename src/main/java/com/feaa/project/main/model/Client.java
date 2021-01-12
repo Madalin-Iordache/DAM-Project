@@ -34,11 +34,20 @@ public class Client implements Serializable {
 
     public Client() {}
 
-    public Client(String firstName, String lastName, int age, String email) {
+    public Client(String firstName, String lastName, Integer age, String email, Set<Contract> contracts) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.email = email;
+        this.contracts = contracts;
+    }
+
+    public Set<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Set<Contract> contracts) {
+        this.contracts = contracts;
     }
 
     public Integer getIdClient() {

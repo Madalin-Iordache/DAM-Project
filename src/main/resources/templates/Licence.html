@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/all.css" th:href="@{/css/all.css}">
+    <title>Licences</title>
+</head>
+
+<body class="h-100 align-items-center">
+
+    <div class="container pt-5">
+
+    </div>
+
+
+    <div class="container">
+        <h4>Licences info</h4>
+        <form th:action="@{/addLicence/{id}(id=${contract.idContract})}" method="get">
+            <button type="submit" class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-lg">Add licence</button>
+        </form>
+    </div>
+
+
+
+    <div class="container mt-5">
+        <table class="table">
+            <thead>
+            <tr>
+                <th th:each="column: ${listOfLicenceTableColumn}" th:text="${column}"></th>
+                <th>#</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr scope="row" th:each="licence: ${listOfLicences}">
+                <td th:text="${licence.serialNumber}"></td>
+                <td th:text="${licence.startDate}"></td>
+                <td th:text="${licence.endDate}"></td>
+                <td th:text="${licence.status}"></td>
+                <td th:switch="${licence.endDate.before(#dates.createNow())}">
+                    <span th:case="true">
+                        <form  method="get" th:action="@{/refreshLicence/{id}(id=${licence.idLicence})}" th:object="${licence}">
+                            <button  type="submit" class="btn" data-toggle="tooltip" data-placement="top" title="Show">
+                                <i class="fas fa-history"></i>
+                            </button>
+                        </form>
+                    </span>
+                    <span th:case="false"></span>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

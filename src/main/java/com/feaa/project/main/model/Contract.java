@@ -2,6 +2,7 @@ package com.feaa.project.main.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="CONTRACT")
@@ -13,8 +14,12 @@ public class Contract implements Serializable {
     private Integer idContract;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_CLIENT", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "ID_CLIENT", nullable = false)
     private Client client;
+
+
+    @Column(name = "CONTRACT_NAME", nullable = false)
+    private String contractName;
 
     @Column(name="SIGNED_DATE", nullable = false)
     private Date signedDate;
@@ -25,12 +30,18 @@ public class Contract implements Serializable {
     @Column(name="CONTRACT_CURRENCY", nullable = false)
     private String contractCurrency;
 
+    @OneToMany(mappedBy = "contract", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<Licence> licences;
+
     public Contract() {}
 
-    public Contract(Date signedDate, Integer contractValue, String contractCurrency) {
-        this.signedDate = signedDate;
-        this.contractValue = contractValue;
-        this.contractCurrency = contractCurrency;
+    public Set<Licence> getLicences() {
+        return licences;
+    }
+
+    public void setLicences(Set<Licence> licences) {
+        this.licences = licences;
     }
 
     public String getContractCurrency() {
@@ -73,13 +84,23 @@ public class Contract implements Serializable {
         this.contractValue = contractValue;
     }
 
+    public String getContractName() {
+        return contractName;
+    }
+
+    public void setContractName(String contractName) {
+        this.contractName = contractName;
+    }
+
     @Override
     public String toString() {
         return "Contract{" +
-                "id=" + idContract +
+                "idContract=" + idContract +
                 ", client=" + client +
+                ", contractName='" + contractName + '\'' +
                 ", signedDate=" + signedDate +
                 ", contractValue=" + contractValue +
+                ", contractCurrency='" + contractCurrency + '\'' +
                 '}';
     }
 }
